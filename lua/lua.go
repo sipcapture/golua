@@ -7,13 +7,14 @@ package lua
 
 /*
 #cgo CFLAGS: -I ${SRCDIR}/lua
+#cgo llua5.1 LDFLAGS: -llua5.1
 #cgo llua LDFLAGS: -llua
 #cgo luaa LDFLAGS: -llua -lm -ldl
 #cgo luajit LDFLAGS: -lluajit-5.1
-#cgo linux,!llua,!luaa,!luajit LDFLAGS: -llua5.1
-#cgo darwin,!luaa,!luajit pkg-config: lua5.1
-#cgo freebsd,!luaa,!luajit LDFLAGS: -llua-5.1
-#cgo windows,!llua,!luajit LDFLAGS: -L${SRCDIR} -llua -lmingwex -lmingw32
+#cgo linux,!llua,!luaa,!llua5.1 LDFLAGS: -lluajit-5.1
+#cgo darwin,!luaa,!llua5.1 pkg-config: luajit-5.1
+#cgo freebsd,!luaa,!llua5.1 LDFLAGS: -lluajit-5.1
+#cgo windows,!llua,!llua5.1 LDFLAGS: -L${SRCDIR} -lluajit-5.1 -lmingwex -lmingw32
 
 #include <lua.h>
 #include <stdlib.h>
