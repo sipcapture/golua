@@ -265,10 +265,10 @@ int interface_newindex_callback(lua_State *L)
 	}
 }
 
-int panic_msghandler(lua_State *L)
+int err_msghandler(lua_State *L)
 {
 	size_t gostateindex = clua_getgostate(L);
-	go_panic_msghandler(gostateindex, (char *)lua_tolstring(L, -1, NULL));
+	go_err_msghandler(gostateindex, (char *)lua_tolstring(L, -1, NULL));
 	return 0;
 }
 
@@ -318,7 +318,7 @@ void clua_initstate(lua_State* L)
 	lua_pushcfunction(L, &interface_newindex_callback);
 	lua_settable(L, -3);
 
-	lua_register(L, GOLUA_DEFAULT_MSGHANDLER, &panic_msghandler);
+	lua_register(L, GOLUA_DEFAULT_MSGHANDLER, &err_msghandler);
 	lua_pop(L, 1);
 }
 
@@ -447,5 +447,3 @@ void clua_setexecutionlimit(lua_State* L, int n)
 {
 	lua_sethook(L, &clua_hook_function, LUA_MASKCOUNT, n);
 }
-
-
